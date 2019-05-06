@@ -14,3 +14,17 @@ vhost_http_port = 7000
 docker run -d --restart=always --name frps -v /etc/frps/:/conf -p ${host_port}:${docker_port} unwenliu/frps:latest
 ```
 
+### 使用docker-compose方式启动
+建立docker-compose.yml文件
+```yml
+version: '3'
+
+services:
+  frps:
+    image: unwenliu/frps:0.25.0
+    network_mode: "host"
+    volumes:
+      - /etc/frps:/conf
+    restart: unless-stopped
+```
+
